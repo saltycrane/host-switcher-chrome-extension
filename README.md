@@ -2,11 +2,11 @@
 
 ## Features
 
-✅ Shows all 6 host options as buttons
-✅ Highlights the current host
-✅ Preserves the full path, query parameters, and hash when switching
-✅ Displays the current URL at the bottom
-✅ Clean, modern UI with hover effects
+- ✅ Shows all 6 host options as buttons
+- ✅ Highlights the current host
+- ✅ Preserves the full path, query parameters, and hash when switching
+- ✅ Displays the current URL at the bottom
+- ✅ Clean, modern UI with hover effects
 
 ## To Install
 
