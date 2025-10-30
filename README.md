@@ -2,11 +2,11 @@
 
 ## Features
 
-- ✅ Shows all 6 host options as buttons
-- ✅ Highlights the current host
-- ✅ Preserves the full path, query parameters, and hash when switching
-- ✅ Displays the current URL at the bottom
-- ✅ Clean, modern UI with hover effects
+- ✅ Configurable host list - Add, edit, or remove hosts
+- ✅ Settings page - Right-click extension icon → "Options" or click "⚙️ Configure Hosts" in popup
+- ✅ Persistent storage - Settings sync across Chrome browsers when signed in
+- ✅ Validation - Ensures URLs are valid before saving
+- ✅ User-friendly interface - Clean design with drag handles for future reordering
 
 ## To Install
 
@@ -16,6 +16,12 @@
 4. Enable "Developer mode" (toggle in top right)
 5. Click "Load unpacked"
 6. Select your extension folder
+
+## To Access Settings
+
+- Method 1: Right-click the extension icon → "Options"
+- Method 2: Click "⚙️ Configure Hosts" link at bottom of popup
+- Method 3: Go to chrome://extensions/, find Host Switcher, click "Details" → "Extension options"
 
 ## To Use
 
