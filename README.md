@@ -9,20 +9,19 @@ A Chrome extension that allows you to quickly switch between different host envi
 
 ## Features
 
+- ✅ Quick host switching - Switch in 2 clicks
 - ✅ Configurable host list - Add, edit, or remove hosts
-- ✅ Settings page - Right-click extension icon → "Options" or click "⚙️ Configure Hosts" in popup
 - ✅ Persistent storage - Settings sync across Chrome browsers when signed in
-- ✅ Validation - Ensures URLs are valid before saving
-- ✅ User-friendly interface - Clean design with drag handles for future reordering
 
 ## To Install
 
 1. Click this link to download the ZIP file: [`host-switcher-chrome-extension-1.0.0.zip`]( https://github.com/saltycrane/host-switcher-chrome-extension/archive/refs/tags/v1.0.0.zip) 
-2. After downloading, unzip the file
+2. Unzip the file
 3. Open Chrome and go to chrome://extensions/
 4. Enable "Developer mode" (toggle in top right)
 5. Click "Load unpacked"
 6. Select the unzipped folder (e.g. `host-switcher-chrome-extension-1.0.0`)
+7. Pin the extension to your toolbar
 
 (Alternatively you can clone the repo instead of downloading the ZIP file.)
 
