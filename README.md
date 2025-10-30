@@ -1,5 +1,7 @@
 # host-switcher-chrome-extension
 
+A Chrome extension that allows you to quickly switch between different host environments (like localhost, staging, and production) while preserving the current page path. Vibe coded; prompts are in commit messages.
+
 ## Screenshots
 
 ![Host Switcher Popup](docs/screenshot-host-switcher.png)
