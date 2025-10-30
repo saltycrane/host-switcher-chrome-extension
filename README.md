@@ -17,14 +17,14 @@ A Chrome extension that allows you to quickly switch between different host envi
 
 ## To Install
 
-1. Clone the repo
-    ```
-    git clone https://github.com/saltycrane/host-switcher-chrome-extension.git
-    ```
-2. Open Chrome and go to chrome://extensions/
-3. Enable "Developer mode" (toggle in top right)
-4. Click "Load unpacked"
-5. Select the extension folder (`host-switcher-chrome-extension`)
+1. Click this link to download the ZIP file: [`host-switcher-chrome-extension-1.0.0.zip`]( https://github.com/saltycrane/host-switcher-chrome-extension/archive/refs/tags/v1.0.0.zip) 
+2. After downloading, unzip the file
+3. Open Chrome and go to chrome://extensions/
+4. Enable "Developer mode" (toggle in top right)
+5. Click "Load unpacked"
+6. Select the unzipped folder (e.g. `host-switcher-chrome-extension-1.0.0`)
+
+(Alternatively you can clone the repo instead of downloading the ZIP file.)
 
 ## To Use
 
