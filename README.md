@@ -1,5 +1,10 @@
 # host-switcher-chrome-extension
 
+## Screenshots
+
+![Host Switcher Popup](docs/screenshot-host-switcher.png)
+![Settings Page](docs/screenshot-settings.png)
+
 ## Features
 
 - ✅ Configurable host list - Add, edit, or remove hosts
