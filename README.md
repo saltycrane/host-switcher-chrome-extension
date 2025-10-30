@@ -10,21 +10,23 @@
 
 ## To Install
 
-1. Save all three files in a folder (e.g., host-switcher)
-2. Create simple icon images (icon16.png, icon48.png, icon128.png) or use placeholder images
-3. Open Chrome and go to chrome://extensions/
-4. Enable "Developer mode" (toggle in top right)
-5. Click "Load unpacked"
-6. Select your extension folder
-
-## To Access Settings
-
-- Method 1: Right-click the extension icon → "Options"
-- Method 2: Click "⚙️ Configure Hosts" link at bottom of popup
-- Method 3: Go to chrome://extensions/, find Host Switcher, click "Details" → "Extension options"
+1. Clone the repo
+    ```
+    git clone https://github.com/saltycrane/host-switcher-chrome-extension.git
+    ```
+2. Open Chrome and go to chrome://extensions/
+3. Enable "Developer mode" (toggle in top right)
+4. Click "Load unpacked"
+5. Select the extension folder (`host-switcher-chrome-extension`)
 
 ## To Use
 
 1. Navigate to any page on one of your hosts
 2. Click the extension icon in your toolbar
 3. Click any host button to switch to that environment while keeping the same path
+
+## To Access Settings
+
+- Method 1: Right-click the extension icon → "Options"
+- Method 2: Click "⚙️ Configure Hosts" link at bottom of popup
+- Method 3: Go to chrome://extensions/, find Host Switcher, click "Details" → "Extension options"

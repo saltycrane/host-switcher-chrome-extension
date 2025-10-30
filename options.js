@@ -111,20 +111,6 @@ document.getElementById("save").addEventListener("click", () => {
   });
 });
 
-// Reset to defaults
-document.getElementById("reset").addEventListener("click", () => {
-  if (
-    confirm(
-      "Are you sure you want to reset to default hosts? This will overwrite your current settings."
-    )
-  ) {
-    renderHosts(defaultHosts);
-    chrome.storage.sync.set({ hosts: defaultHosts }, () => {
-      showStatus("Reset to default settings", "success");
-    });
-  }
-});
-
 // Show status message
 function showStatus(message, type) {
   const status = document.getElementById("status");
