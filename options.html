@@ -138,6 +138,28 @@
         font-size: 18px;
         user-select: none;
       }
+
+      .host-item[draggable="true"] {
+        cursor: grab;
+      }
+
+      .host-item[draggable="true"]:active {
+        cursor: grabbing;
+      }
+
+      #dragged-item {
+        opacity: 0.3;
+      }
+
+      .placeholder {
+        border: 2px dashed #4285f4;
+        background: #e8f0fe;
+        opacity: 0.5;
+      }
+
+      .placeholder * {
+        visibility: hidden;
+      }
     </style>
   </head>
   <body>
