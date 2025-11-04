@@ -15,11 +15,6 @@ chrome.storage.sync.get(["hosts"], (result) => {
     const currentUrl = new URL(currentTab.url);
     const currentOrigin = currentUrl.origin;
 
-    // Display current URL
-    document.getElementById(
-      "currentUrl"
-    ).textContent = `Current: ${currentTab.url}`;
-
     // Create buttons for each host
     const hostList = document.getElementById("hostList");
 
