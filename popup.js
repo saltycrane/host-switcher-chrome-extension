@@ -19,6 +19,11 @@ chrome.storage.sync.get(["hosts"], (result) => {
     const hostList = document.getElementById("hostList");
 
     hosts.forEach((host) => {
+      // Create a container for the host item
+      const hostItem = document.createElement("div");
+      hostItem.className = "host-item";
+
+      // Create the main host button
       const button = document.createElement("button");
       button.className = "host-button";
 
@@ -39,12 +44,27 @@ chrome.storage.sync.get(["hosts"], (result) => {
       button.appendChild(label);
       button.appendChild(urlSpan);
 
-      // Add click handler
+      // Add click handler for switching in current tab
       button.addEventListener("click", () => {
         switchHost(currentUrl, host.url, currentTab.id);
       });
 
-      hostList.appendChild(button);
+      // Create the "New Tab" button
+      const newTabButton = document.createElement("button");
+      newTabButton.className = "new-tab-button";
+      newTabButton.textContent = "↗";
+      newTabButton.title = "Open in new tab";
+
+      // Add click handler for opening in new tab
+      newTabButton.addEventListener("click", () => {
+        openInNewTab(currentUrl, host.url);
+      });
+
+      // Add both buttons to the host item
+      hostItem.appendChild(button);
+      hostItem.appendChild(newTabButton);
+
+      hostList.appendChild(hostItem);
     });
 
     // Add settings link at the bottom
@@ -62,7 +82,7 @@ chrome.storage.sync.get(["hosts"], (result) => {
   });
 });
 
-// Function to switch host
+// Function to switch host in current tab
 function switchHost(currentUrl, newOrigin, tabId) {
   // Construct the new URL with the new origin but same path and query
   const newUrl =
@@ -70,6 +90,18 @@ function switchHost(currentUrl, newOrigin, tabId) {
 
   // Update the tab with the new URL
   chrome.tabs.update(tabId, { url: newUrl }, () => {
+    window.close();
+  });
+}
+
+// Function to open in new tab
+function openInNewTab(currentUrl, newOrigin) {
+  // Construct the new URL with the new origin but same path and query
+  const newUrl =
+    newOrigin + currentUrl.pathname + currentUrl.search + currentUrl.hash;
+
+  // Open in new tab
+  chrome.tabs.create({ url: newUrl }, () => {
     window.close();
   });
 }
