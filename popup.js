@@ -52,11 +52,12 @@ chrome.storage.sync.get(["hosts"], (result) => {
       // Create the "New Tab" button
       const newTabButton = document.createElement("button");
       newTabButton.className = "new-tab-button";
-      newTabButton.textContent = "↗";
+      newTabButton.textContent = "New Tab";
       newTabButton.title = "Open in new tab";
 
       // Add click handler for opening in new tab
-      newTabButton.addEventListener("click", () => {
+      newTabButton.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent triggering the host button click
         openInNewTab(currentUrl, host.url);
       });
 
