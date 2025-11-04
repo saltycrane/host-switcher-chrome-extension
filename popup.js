@@ -30,6 +30,9 @@ chrome.storage.sync.get(["hosts"], (result) => {
       // Check if this is the current host
       if (currentOrigin === host.url) {
         button.classList.add("current");
+        button.title = "You are currently on this host";
+      } else {
+        button.title = `Switch to ${host.label}`;
       }
 
       // Create host button row 1
@@ -62,12 +65,12 @@ chrome.storage.sync.get(["hosts"], (result) => {
       const newTabButton = document.createElement("button");
       newTabButton.className = "new-tab-button";
       newTabButton.innerHTML = `
-        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 4px;">
+        New Tab
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 1px;">
           <path d="M10.5 1.5H6.5M10.5 1.5V5.5M10.5 1.5L5.5 6.5M4.5 2.5H2C1.72386 2.5 1.5 2.72386 1.5 3V10C1.5 10.2761 1.72386 10.5 2 10.5H9C9.27614 10.5 9.5 10.2761 9.5 10V7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        New Tab
       `;
-      newTabButton.title = "Open in new tab";
+      newTabButton.title = `Open ${host.label} in new tab`;
 
       // Add click handler for opening in new tab
       newTabButton.addEventListener("click", (e) => {
