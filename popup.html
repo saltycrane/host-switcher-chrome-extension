@@ -31,8 +31,7 @@
 
       .host-button {
         width: 100%;
-        padding: 10px 12px;
-        padding-right: 90px;
+        padding: 4px 6px 10px 12px;
         border: 1px solid #ddd;
         border-radius: 6px;
         background: white;
@@ -44,8 +43,9 @@
       }
 
       .host-button:hover {
-        background: #f5f5f5;
-        border-color: #999;
+        background: #e3f2fd;
+        border-color: #2196f3;
+        color: #1976d2;
       }
 
       .host-button:active {
@@ -53,16 +53,24 @@
       }
 
       .host-button.current {
-        background: #e3f2fd;
-        border-color: #2196f3;
-        color: #1976d2;
-        font-weight: 500;
+        background: #f5f5f5;
+        border-color: #666;
+        color: #333;
+        font-weight: 700;
+      }
+
+      .host-button-row1 {
+        align-items: end;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+
+      .host-button-row2 {
+        display: flex;
       }
 
       .new-tab-button {
-        position: absolute;
-        top: 4px;
-        right: 4px;
         padding: 6px 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
@@ -89,6 +97,10 @@
         border-color: #3367d6;
         transform: translateY(1px);
         box-shadow: 0 1px 2px rgba(66, 133, 244, 0.3);
+      }
+
+      .host-button.current .host-label {
+        font-weight: 700;
       }
 
       .host-label {

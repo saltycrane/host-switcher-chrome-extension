@@ -32,17 +32,26 @@ chrome.storage.sync.get(["hosts"], (result) => {
         button.classList.add("current");
       }
 
-      // Create button content
+      // Create host button row 1
+      const row1 = document.createElement("div");
+      row1.className = "host-button-row1";
+
+      // Create button host name label
       const label = document.createElement("span");
       label.className = "host-label";
       label.textContent = host.label;
 
+      // Create host button row 2
+      const row2 = document.createElement("div");
+      row2.className = "host-button-row2";
+
+      // Create host button URL
       const urlSpan = document.createElement("span");
       urlSpan.className = "host-url";
       urlSpan.textContent = host.url;
 
-      button.appendChild(label);
-      button.appendChild(urlSpan);
+      // Add URL to row 2
+      row2.appendChild(urlSpan);
 
       // Add click handler for switching in current tab
       button.addEventListener("click", () => {
@@ -61,10 +70,18 @@ chrome.storage.sync.get(["hosts"], (result) => {
         openInNewTab(currentUrl, host.url);
       });
 
+      // Add contents to row 1
+      row1.appendChild(label);
+      row1.appendChild(newTabButton);
+
+      // Add the 2 rows to the button
+      button.appendChild(row1);
+      button.appendChild(row2);
+
       // Add both buttons to the host item
       hostItem.appendChild(button);
-      hostItem.appendChild(newTabButton);
 
+      // Add host to the host list
       hostList.appendChild(hostItem);
     });
 
