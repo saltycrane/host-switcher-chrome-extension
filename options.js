@@ -1,10 +1,7 @@
 // Default hosts
 const defaultHosts = [
   { label: "Localhost", url: "http://localhost:3000" },
-  { label: "AWS Staging", url: "https://aws-staging.mycompany.com" },
-  { label: "Boats Staging", url: "https://boats-staging.mycompany.com" },
-  { label: "PS Staging", url: "https://ps-staging.mycompany.com" },
-  { label: "Pre-prod", url: "https://preprod.mycompany.com" },
+  { label: "Staging", url: "https://staging.mycompany.com" },
   { label: "Production", url: "https://www.mycompany.com" },
 ];
 
