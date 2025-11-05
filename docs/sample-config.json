@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-11-05T12:00:00.000Z",
+  "hosts": [
+    {
+      "label": "Localhost",
+      "url": "http://localhost:3000"
+    },
+    {
+      "label": "Dev",
+      "url": "https://dev.mycompany.com"
+    },
+    {
+      "label": "Staging",
+      "url": "https://staging.mycompany.com"
+    },
+    {
+      "label": "Production",
+      "url": "https://www.mycompany.com"
+    }
+  ]
+}

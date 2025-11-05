@@ -160,6 +160,51 @@
       .placeholder * {
         visibility: hidden;
       }
+
+      .import-export {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+
+      .import-export h2 {
+        font-size: 18px;
+        margin: 0 0 15px 0;
+        color: #333;
+      }
+
+      .import-export-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .export-button,
+      .import-button {
+        padding: 10px 20px;
+        background: #666;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .export-button:hover,
+      .import-button:hover {
+        background: #555;
+      }
+
+      #importFile {
+        display: none;
+      }
+
+      .import-info {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #666;
+      }
     </style>
   </head>
   <body>
@@ -176,6 +221,18 @@
       </div>
 
       <div class="status" id="status"></div>
+
+      <div class="import-export">
+        <h2>Share Configuration</h2>
+        <div class="import-export-buttons">
+          <button class="export-button" id="exportConfig">📥 Export Config</button>
+          <button class="import-button" id="importConfig">📤 Import Config</button>
+          <input type="file" id="importFile" accept=".json" />
+        </div>
+        <div class="import-info">
+          Export your host configuration to share with team members, or import a configuration file.
+        </div>
+      </div>
     </div>
 
     <script src="options.js"></script>

@@ -254,5 +254,108 @@ function updateIndices() {
   });
 }
 
+// Export configuration
+document.getElementById("exportConfig").addEventListener("click", () => {
+  const hosts = getCurrentHosts();
+
+  if (hosts.length === 0) {
+    showStatus("No hosts to export. Please add at least one host.", "error");
+    return;
+  }
+
+  // Create the export data
+  const exportData = {
+    version: "1.0",
+    exportDate: new Date().toISOString(),
+    hosts: hosts,
+  };
+
+  // Convert to JSON string
+  const jsonString = JSON.stringify(exportData, null, 2);
+
+  // Create a blob and download link
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `host-switcher-config-${
+    new Date().toISOString().split("T")[0]
+  }.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showStatus("Configuration exported successfully!", "success");
+});
+
+// Import configuration
+document.getElementById("importConfig").addEventListener("click", () => {
+  document.getElementById("importFile").click();
+});
+
+document.getElementById("importFile").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    try {
+      const importData = JSON.parse(event.target.result);
+
+      // Validate the imported data
+      if (!importData.hosts || !Array.isArray(importData.hosts)) {
+        showStatus("Invalid configuration file: missing hosts array", "error");
+        return;
+      }
+
+      // Validate each host
+      for (const host of importData.hosts) {
+        if (!host.label || !host.url) {
+          showStatus(
+            "Invalid configuration file: each host must have a label and url",
+            "error"
+          );
+          return;
+        }
+
+        // Validate URL format
+        try {
+          new URL(host.url);
+        } catch (err) {
+          showStatus(`Invalid URL in configuration: ${host.url}`, "error");
+          return;
+        }
+      }
+
+      // Show confirmation dialog
+      const confirmMessage = `This will replace your current ${
+        getCurrentHosts().length
+      } host(s) with ${
+        importData.hosts.length
+      } host(s) from the file. Continue?`;
+      if (confirm(confirmMessage)) {
+        renderHosts(importData.hosts);
+        showStatus(
+          `Successfully imported ${importData.hosts.length} host(s). Don't forget to save!`,
+          "success"
+        );
+      }
+    } catch (error) {
+      showStatus(`Error importing configuration: ${error.message}`, "error");
+    } finally {
+      // Reset the file input
+      e.target.value = "";
+    }
+  };
+
+  reader.onerror = () => {
+    showStatus("Error reading file", "error");
+    e.target.value = "";
+  };
+
+  reader.readAsText(file);
+});
+
 // Initialize
 loadHosts();

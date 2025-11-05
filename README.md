@@ -13,6 +13,7 @@ A Chrome extension that allows you to quickly switch between different host envi
 - ✅ Open a host in a new tab
 - ✅ Add, edit, or remove hosts
 - ✅ Settings sync across Chrome browsers when signed in
+- ✅ Export and import configuration to share with team members
 
 ## To Install
 
@@ -37,3 +38,12 @@ A Chrome extension that allows you to quickly switch between different host envi
 - Method 1: Right-click the extension icon → "Options"
 - Method 2: Click "⚙️ Configure Hosts" link at bottom of popup
 - Method 3: Go to chrome://extensions/, find Host Switcher, click "Details" → "Extension options"
+
+## To Share Configuration with Team Members
+
+1. Open the extension settings (see methods above)
+2. Click "📥 Export Config" to download your configuration as a JSON file
+3. Share this file with your team members
+4. Team members can click "📤 Import Config" and select the file to load your configuration
+
+A sample configuration file is available at [`docs/sample-config.json`](docs/sample-config.json).

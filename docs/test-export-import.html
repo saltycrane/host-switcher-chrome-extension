@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Export/Import Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .pass {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .fail {
+            background: #ffebee;
+            color: #c62828;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3367d6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Host Switcher Export/Import Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Valid Configuration</h2>
+        <button onclick="testValidConfig()">Run Test</button>
+        <div id="test1-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Invalid JSON</h2>
+        <button onclick="testInvalidJSON()">Run Test</button>
+        <div id="test2-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Missing Hosts Array</h2>
+        <button onclick="testMissingHosts()">Run Test</button>
+        <div id="test3-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Invalid URL</h2>
+        <button onclick="testInvalidURL()">Run Test</button>
+        <div id="test4-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 5: Missing Label or URL</h2>
+        <button onclick="testMissingFields()">Run Test</button>
+        <div id="test5-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 6: Export Format</h2>
+        <button onclick="testExportFormat()">Run Test</button>
+        <div id="test6-result"></div>
+    </div>
+
+    <script>
+        function showResult(testId, passed, message) {
+            const resultDiv = document.getElementById(testId);
+            resultDiv.innerHTML = `<div class="test-result ${passed ? 'pass' : 'fail'}">${passed ? '✓ PASS' : '✗ FAIL'}: ${message}</div>`;
+        }
+
+        function validateImportData(importData) {
+            // Validate the imported data
+            if (!importData.hosts || !Array.isArray(importData.hosts)) {
+                return { valid: false, error: "Invalid configuration file: missing hosts array" };
+            }
+
+            // Validate each host
+            for (const host of importData.hosts) {
+                if (!host.label || !host.url) {
+                    return { valid: false, error: "Invalid configuration file: each host must have a label and url" };
+                }
+
+                // Validate URL format
+                try {
+                    new URL(host.url);
+                } catch (err) {
+                    return { valid: false, error: `Invalid URL in configuration: ${host.url}` };
+                }
+            }
+
+            return { valid: true };
+        }
+
+        function testValidConfig() {
+            const validConfig = {
+                version: "1.0",
+                exportDate: new Date().toISOString(),
+                hosts: [
+                    { label: "Localhost", url: "http://localhost:3000" },
+                    { label: "Staging", url: "https://staging.example.com" }
+                ]
+            };
+
+            const result = validateImportData(validConfig);
+            showResult('test1-result', result.valid, result.valid ? 'Valid configuration accepted' : result.error);
+        }
+
+        function testInvalidJSON() {
+            try {
+                JSON.parse("{invalid json}");
+                showResult('test2-result', false, 'Invalid JSON was not caught');
+            } catch (error) {
+                showResult('test2-result', true, 'Invalid JSON correctly rejected');
+            }
+        }
+
+        function testMissingHosts() {
+            const invalidConfig = {
+                version: "1.0",
+                exportDate: new Date().toISOString()
+            };
+
+            const result = validateImportData(invalidConfig);
+            showResult('test3-result', !result.valid, result.error || 'Validation failed as expected');
+        }
+
+        function testInvalidURL() {
+            const invalidConfig = {
+                version: "1.0",
+                hosts: [
+                    { label: "Bad Host", url: "not-a-valid-url" }
+                ]
+            };
+
+            const result = validateImportData(invalidConfig);
+            showResult('test4-result', !result.valid, result.error || 'Invalid URL correctly rejected');
+        }
+
+        function testMissingFields() {
+            const invalidConfig = {
+                version: "1.0",
+                hosts: [
+                    { label: "No URL Host" }
+                ]
+            };
+
+            const result = validateImportData(invalidConfig);
+            showResult('test5-result', !result.valid, result.error || 'Missing fields correctly rejected');
+        }
+
+        function testExportFormat() {
+            const hosts = [
+                { label: "Test", url: "http://test.com" }
+            ];
+
+            const exportData = {
+                version: "1.0",
+                exportDate: new Date().toISOString(),
+                hosts: hosts
+            };
+
+            const hasVersion = exportData.version === "1.0";
+            const hasExportDate = typeof exportData.exportDate === 'string';
+            const hasHosts = Array.isArray(exportData.hosts);
+            const canStringify = JSON.stringify(exportData, null, 2).length > 0;
+
+            const passed = hasVersion && hasExportDate && hasHosts && canStringify;
+            showResult('test6-result', passed, passed ? 'Export format is correct' : 'Export format is invalid');
+        }
+
+        // Run all tests on load
+        window.onload = function() {
+            console.log('Tests ready. Click buttons to run individual tests or run all tests below.');
+        };
+    </script>
+</body>
+</html>
